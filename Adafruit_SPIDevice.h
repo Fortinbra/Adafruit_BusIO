@@ -1,12 +1,11 @@
 #ifndef Adafruit_SPIDevice_h
 #define Adafruit_SPIDevice_h
 
-#include <Arduino.h>
 
 #if !defined(SPI_INTERFACES_COUNT) ||                                          \
     (defined(SPI_INTERFACES_COUNT) && (SPI_INTERFACES_COUNT > 0))
 // HW SPI available
-#include <SPI.h>
+
 #define BUSIO_HAS_HW_SPI
 #else
 // SW SPI ONLY
