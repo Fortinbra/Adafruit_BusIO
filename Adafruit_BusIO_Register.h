@@ -1,13 +1,21 @@
 #ifndef Adafruit_BusIO_Register_h
 #define Adafruit_BusIO_Register_h
 
-#if !defined(SPI_INTERFACES_COUNT) ||                                          \
-    (defined(SPI_INTERFACES_COUNT) && (SPI_INTERFACES_COUNT > 0))
+#include "Adafruit_I2CDevice.h"
+#include "Adafruit_SPIDevice.h"
+#include <stdio.h>
 
-#include Adafruit_I2CDevice.h
-#include Adafruit_SPIDevice.h
+// Define LSBFIRST and MSBFIRST for Pico SDK
+#ifndef LSBFIRST
+#define LSBFIRST 0
+#endif
 
-typedef enum _Adafruit_BusIO_SPIRegType {
+#ifndef MSBFIRST
+#define MSBFIRST 1
+#endif
+
+typedef enum _Adafruit_BusIO_SPIRegType
+{
   ADDRBIT8_HIGH_TOREAD = 0,
   /*!<
    * ADDRBIT8_HIGH_TOREAD
@@ -38,7 +46,8 @@ typedef enum _Adafruit_BusIO_SPIRegType {
  * @brief The class which defines a device register (a location to read/write
  * data from)
  */
-class Adafruit_BusIO_Register {
+class Adafruit_BusIO_Register
+{
 public:
   Adafruit_BusIO_Register(Adafruit_I2CDevice *i2cdevice, uint16_t reg_addr,
                           uint8_t width = 1, uint8_t byteorder = LSBFIRST,
@@ -69,8 +78,8 @@ public:
   void setAddress(uint16_t address);
   void setAddressWidth(uint16_t address_width);
 
-  void print(Stream *s = &Serial);
-  void println(Stream *s = &Serial);
+  void print();
+  void println();
 
 private:
   Adafruit_I2CDevice *_i2cdevice;
@@ -87,7 +96,8 @@ private:
  * @brief The class which defines a slice of bits from within a device register
  * (a location to read/write data from)
  */
-class Adafruit_BusIO_RegisterBits {
+class Adafruit_BusIO_RegisterBits
+{
 public:
   Adafruit_BusIO_RegisterBits(Adafruit_BusIO_Register *reg, uint8_t bits,
                               uint8_t shift);
@@ -99,5 +109,4 @@ private:
   uint8_t _bits, _shift;
 };
 
-#endif // SPI exists
 #endif // BusIO_Register_h

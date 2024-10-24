@@ -1,6 +1,7 @@
 #ifndef Adafruit_SPIDevice_h
 #define Adafruit_SPIDevice_h
-#include "hardware/spi.h"
+
+#include <hardware/spi.h>
 
 // Define SPI modes for Pico SDK
 enum
@@ -25,8 +26,7 @@ typedef spi_inst_t SPIClass;
 class Adafruit_SPIDevice
 {
 public:
-  Adafruit_SPIDevice(uint8_t cs, SPIClass *theSPI = spi0, uint32_t freq = 1000000,
-                     BusIOBitOrder dataOrder = SPI_BITORDER_MSBFIRST, uint8_t dataMode = SPI_MODE0);
+  Adafruit_SPIDevice(uint8_t cs, uint32_t freq = 1000000, BusIOBitOrder dataOrder = SPI_BITORDER_MSBFIRST, uint8_t dataMode = SPI_MODE0, SPIClass *theSPI = spi0);
 
   ~Adafruit_SPIDevice();
 
