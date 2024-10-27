@@ -1,5 +1,6 @@
 #include "Adafruit_BusIO_Register.h"
-#include <stdio.h>
+#include "pico/stdio.h"
+#include "pico/printf.h"
 
 /*!
  *    @brief  Create a register we access over an I2C Device (which defines the

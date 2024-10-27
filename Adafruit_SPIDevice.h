@@ -1,7 +1,7 @@
 #ifndef Adafruit_SPIDevice_h
 #define Adafruit_SPIDevice_h
 
-#include <hardware/spi.h>
+#include "hardware/spi.h"
 
 // Define SPI modes for Pico SDK
 enum

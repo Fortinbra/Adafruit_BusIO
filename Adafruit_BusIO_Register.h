@@ -3,7 +3,7 @@
 
 #include "Adafruit_I2CDevice.h"
 #include "Adafruit_SPIDevice.h"
-#include <stdio.h>
+#include "pico/stdio.h"
 
 // Define LSBFIRST and MSBFIRST for Pico SDK
 #ifndef LSBFIRST
