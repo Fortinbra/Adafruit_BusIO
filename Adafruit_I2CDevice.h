@@ -1,4 +1,4 @@
-#include "hardware/i2c.h"
+#include <hardware/i2c.h>
 
 #ifndef Adafruit_I2CDevice_h
 #define Adafruit_I2CDevice_h
