@@ -13,24 +13,15 @@
  */
 Adafruit_SPIDevice::Adafruit_SPIDevice(int8_t cspin, uint32_t freq,
                                        BusIOBitOrder dataOrder,
-                                       uint8_t dataMode, SPIClass *theSPI) {
-#ifdef BUSIO_HAS_HW_SPI
+                                       uint8_t dataMode, spi_inst_t *theSPI) {
   _cs = cspin;
   _sck = _mosi = _miso = -1;
   _spi = theSPI;
   _begun = false;
-  _spiSetting = new SPISettings(freq, dataOrder, dataMode);
   _freq = freq;
   _dataOrder = dataOrder;
   _dataMode = dataMode;
-#else
-  // unused, but needed to suppress compiler warns
-  (void)cspin;
-  (void)freq;
-  (void)dataOrder;
-  (void)dataMode;
-  (void)theSPI;
-#endif
+
 }
 
 /*!
@@ -55,7 +46,6 @@ Adafruit_SPIDevice::Adafruit_SPIDevice(int8_t cspin, int8_t sckpin,
   _miso = misopin;
   _mosi = mosipin;
 
-#ifdef BUSIO_USE_FAST_PINIO
   csPort = (BusIO_PortReg *)portOutputRegister(digitalPinToPort(cspin));
   csPinMask = digitalPinToBitMask(cspin);
   if (mosipin != -1) {
@@ -68,8 +58,6 @@ Adafruit_SPIDevice::Adafruit_SPIDevice(int8_t cspin, int8_t sckpin,
   }
   clkPort = (BusIO_PortReg *)portOutputRegister(digitalPinToPort(sckpin));
   clkPinMask = digitalPinToBitMask(sckpin);
-#endif
-
   _freq = freq;
   _dataOrder = dataOrder;
   _dataMode = dataMode;
